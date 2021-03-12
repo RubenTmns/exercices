@@ -14,9 +14,11 @@ const bar = 28;
 const sumResult = foo + bar;
 
 // a constant called `prodResult`, bound to the product of `bar` and `foo`.
+const prodResult = 
 
 // a constant called `sparta`, bound to an object with a field `check`, with the value of `ask` and with the field `response`, with the value of `answer`;
 
 // a constant called `leader`, bound to the value of the field `check` of the object `sparta`;
 
 // a constant called `digits`, bound to an array from zero to nine.
+const digits = 
