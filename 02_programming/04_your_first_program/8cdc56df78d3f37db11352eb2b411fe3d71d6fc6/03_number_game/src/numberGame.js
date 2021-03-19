@@ -22,7 +22,7 @@ function numberGame(reader, min = 1, max = 100) {
       reader.question("Enter a number: ", numberCallback);
     }
 
-    if (numberParse > max || numberParse < min) {
+    if (numberParse > min || numberParse < min) {
       console.log("The number is between 1 and 100");
       reader.question("Enter a number: ", numberCallback);
     }
