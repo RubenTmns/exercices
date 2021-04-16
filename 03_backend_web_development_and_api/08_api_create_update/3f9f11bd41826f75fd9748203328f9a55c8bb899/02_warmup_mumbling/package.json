@@ -1,11 +1,11 @@
 {
-  "name": "models_with_promises",
+  "name": "warmup_mumbling",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "test": "eslint --ext .js,.ts . && sparta test --verbose --runInBand"
+    "test": "eslint --ext .js,.ts . && sparta test"
   },
   "devDependencies": {
     "@types/jest": "26.0.10",
@@ -43,8 +43,7 @@
       "src.sample/*"
     ],
     "rules": {
-      "@typescript-eslint/no-inferrable-types": 0,
-      "@typescript-eslint/no-explicit-any": 0
+      "@typescript-eslint/no-inferrable-types": 0
     }
   },
   "jest": {
@@ -57,12 +56,5 @@
       }
     },
     "testEnvironment": "node"
-  },
-  "dependencies": {
-    "@types/express": "^4.17.11",
-    "@types/node-fetch": "^2.5.10",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "node-fetch": "^2.6.1"
   }
 }

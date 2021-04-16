@@ -1,18 +1,23 @@
 {
-  "name": "models_with_promises",
+  "name": "add_to_your_api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "populate-db": "ts-node src/scripts/populate-db.ts",
     "test": "eslint --ext .js,.ts . && sparta test --verbose --runInBand"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.19.0",
     "@types/jest": "26.0.10",
+    "@types/mongodb": "^3.6.12",
+    "@types/node-fetch": "^2.5.10",
     "@typescript-eslint/eslint-plugin": "3.10.1",
     "@typescript-eslint/parser": "3.10.1",
     "eslint": "7.7.0",
     "jest": "26.4.2",
+    "node-fetch": "^2.6.1",
     "ts-jest": "26.3.0",
     "ts-node": "^9.1.1",
     "typescript": "4.0.2"
@@ -60,9 +65,9 @@
   },
   "dependencies": {
     "@types/express": "^4.17.11",
-    "@types/node-fetch": "^2.5.10",
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.1"
+    "mongodb": "^3.6.6"
   }
 }
