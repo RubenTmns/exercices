@@ -1,4 +1,11 @@
 export function sumTwoSmallestNumbers(numbers: number[]): number {
-  const hello = numbers.sort((a, b) => a - b);
-  return hello[0] + hello[1];
+  if (numbers.length < 4) {
+    throw "Not enough numbers";
+  } else if (numbers.some((number) => number < 0)) {
+    throw "Negative number";
+  } else {
+    const twoLowest = numbers.sort((a, b) => a - b);
+
+    return twoLowest[0] + twoLowest[1];
+  }
 }

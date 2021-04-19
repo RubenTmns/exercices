@@ -16,7 +16,7 @@ beforeEach((done) => {
     const gameModel = new GameModel(db.collection("games"));
 
     const app = makeApp(gameModel);
-    server = makeApp(gameModel).listen(3030, done);
+    server = makeApp(gameModel).listen(3031, done);
   });
 });
 
@@ -30,7 +30,7 @@ describe("/ endpoint", () => {
   it("Should respond with a 400 HTTP code", () => {
     expect.assertions(1);
 
-    return fetch("http://localhost:3030/").then((response) => {
+    return fetch("http://localhost:3031/").then((response) => {
       expect(response.status).toBe(400);
     });
   });
@@ -38,7 +38,7 @@ describe("/ endpoint", () => {
   it("Should respond with a JSON error", () => {
     expect.assertions(1);
 
-    return fetch("http://localhost:3030/")
+    return fetch("http://localhost:3031/")
       .then((response) => response.json())
       .then((result) => {
         expect(result).toEqual({ error: "Wrong resource" });
@@ -50,7 +50,7 @@ describe("/games endpoint", () => {
   it("Should respond with a 200 HTTP code", () => {
     expect.assertions(1);
 
-    return fetch("http://localhost:3030/games").then((response) => {
+    return fetch("http://localhost:3031/games").then((response) => {
       expect(response.status).toBe(200);
     });
   });
@@ -58,7 +58,7 @@ describe("/games endpoint", () => {
   it("Should return an array of games", () => {
     expect.assertions(2);
 
-    return fetch("http://localhost:3030/games")
+    return fetch("http://localhost:3031/games")
       .then((response) => response.json())
       .then((result) => {
         expect(Array.isArray(result)).toBe(true);
@@ -73,7 +73,7 @@ describe("/games/:game_slug endpoint", () => {
     expect.assertions(1);
     const randomGame = games[Math.floor(Math.random() * games.length)];
 
-    return fetch(`http://localhost:3030/games/${randomGame.slug}`).then((response) => {
+    return fetch(`http://localhost:3031/games/${randomGame.slug}`).then((response) => {
       expect(response.status).toBe(200);
     });
   });
@@ -81,7 +81,7 @@ describe("/games/:game_slug endpoint", () => {
   it("Should respond with a 404 HTTP code when the game exist", () => {
     expect.assertions(1);
 
-    return fetch("http://localhost:3030/games/this-game-should-not-exist-really").then((response) => {
+    return fetch("http://localhost:3031/games/this-game-should-not-exist-really").then((response) => {
       expect(response.status).toBe(404);
     });
   });
@@ -90,7 +90,7 @@ describe("/games/:game_slug endpoint", () => {
     expect.assertions(1);
     const randomGame = games[Math.floor(Math.random() * games.length)];
 
-    return fetch(`http://localhost:3030/games/${randomGame.slug}`)
+    return fetch(`http://localhost:3031/games/${randomGame.slug}`)
       .then((response) => response.json())
       .then((result) => {
         expect(result.name).toBe(randomGame.name);
@@ -104,7 +104,7 @@ describe("/platforms/:platform_slug endpoint", () => {
 
     const randomPlatform = games[Math.floor(Math.random() * games.length)].platform.slug;
 
-    return fetch(`http://localhost:3030/platforms/${randomPlatform}`).then((response) => {
+    return fetch(`http://localhost:3031/platforms/${randomPlatform}`).then((response) => {
       expect(response.status).toBe(200);
     });
   });
@@ -114,7 +114,7 @@ describe("/platforms/:platform_slug endpoint", () => {
 
     const randomPlatform = games[Math.floor(Math.random() * games.length)].platform.slug;
 
-    return fetch(`http://localhost:3030/platforms/this-platform-does-not-exist`)
+    return fetch(`http://localhost:3031/platforms/this-platform-does-not-exist`)
       .then((response) => response.json())
       .then((result) => {
         expect(result).toEqual([]);
@@ -127,7 +127,7 @@ describe("/platforms/:platform_slug endpoint", () => {
     const randomPlatform = games[0].platform.slug;
     const gamesForThatPlatform = games.filter((game) => game.platform.slug === randomPlatform);
 
-    return fetch(`http://localhost:3030/platforms/${randomPlatform}`)
+    return fetch(`http://localhost:3031/platforms/${randomPlatform}`)
       .then((response) => response.json())
       .then((result) => {
         expect(result.length).toEqual(gamesForThatPlatform.length);
@@ -141,7 +141,7 @@ describe("/platforms endpoint", () => {
 
     const randomPlatform = games[Math.floor(Math.random() * games.length)].platform.slug;
 
-    return fetch(`http://localhost:3030/platforms`).then((response) => {
+    return fetch(`http://localhost:3031/platforms`).then((response) => {
       expect(response.status).toBe(200);
     });
   });
@@ -149,7 +149,7 @@ describe("/platforms endpoint", () => {
   it("Should return an array of platforms", () => {
     expect.assertions(2);
 
-    return fetch("http://localhost:3030/platforms")
+    return fetch("http://localhost:3031/platforms")
       .then((response) => response.json())
       .then((result) => {
         expect(Array.isArray(result)).toBe(true);
@@ -161,7 +161,7 @@ describe("/platforms endpoint", () => {
   it("Should have no duplicates", () => {
     expect.assertions(1);
 
-    return fetch("http://localhost:3030/platforms")
+    return fetch("http://localhost:3031/platforms")
       .then((response) => response.json())
       .then((result) => {
         const deduplicatedResult = Array.from(new Set(result));
@@ -175,7 +175,7 @@ describe("/games POST endpoint", () => {
   it("Should respond with a 201 HTTP code with good data", () => {
     expect.assertions(1);
 
-    return fetch(`http://localhost:3030/games`, {
+    return fetch(`http://localhost:3031/games`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -192,7 +192,7 @@ describe("/games POST endpoint", () => {
   it("Should respond with a 400 HTTP code if a property is missing", () => {
     expect.assertions(1);
 
-    return fetch(`http://localhost:3030/games`, {
+    return fetch(`http://localhost:3031/games`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -208,7 +208,7 @@ describe("/games POST endpoint", () => {
   it("Should respond with the game just added", () => {
     expect.assertions(2);
 
-    return fetch(`http://localhost:3030/games`, {
+    return fetch(`http://localhost:3031/games`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -228,7 +228,7 @@ describe("/games POST endpoint", () => {
   it("Should work to find the added game with its slug", () => {
     expect.assertions(1);
 
-    return fetch(`http://localhost:3030/games`, {
+    return fetch(`http://localhost:3031/games`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -238,7 +238,7 @@ describe("/games POST endpoint", () => {
         slug: "a-new-game",
       }),
     })
-      .then(() => fetch(`http://localhost:3030/games/a-new-game`))
+      .then(() => fetch(`http://localhost:3031/games/a-new-game`))
       .then((response) => response.json())
       .then((result) => {
         expect(result.name).toBe("A new game");

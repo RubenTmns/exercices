@@ -27,48 +27,40 @@ export class GameModel {
     };
   }
 
-  getAll(): Promise<Game[]> {
-    return this.collection
-      .find({})
-      .toArray()
-      .then((games) => games.map(this.fullGameToGame));
+  async getAll(): Promise<Game[]> {
+    const findGames = await this.collection.find({}).toArray();
+    return await findGames.map(this.fullGameToGame);
   }
 
-  findBySlug(slug: string): Promise<Game | null> {
-    return this.collection.findOne({
+  async findBySlug(slug: string): Promise<Game | null> {
+    return await this.collection.findOne({
       slug: slug,
     });
   }
 
-  findByPlatform(platform_slug: string): Promise<Game[]> {
-    return this.collection
-      .find({ "platform.slug": platform_slug })
-      .toArray()
-      .then((games) => games.map(this.fullGameToGame));
+  async findByPlatform(platform_slug: string): Promise<Game[]> {
+    const findBySlug = await this.collection.find({ "platform.slug": platform_slug }).toArray();
+    return await findBySlug.map(this.fullGameToGame);
   }
 
-  getPlatforms(): Promise<Platform[]> {
-    return this.collection
-      .find({})
-      .toArray()
-      .then((games) => {
-        const platforms: Platform[] = [];
-
-        games.forEach((game) => {
-          const platform = platforms.find((platform) => platform.slug === game.platform.slug);
-          if (!platform) {
-            platforms.push(game.platform);
-          }
-        });
-
-        return platforms.map((platform) => ({
-          name: platform.name,
-          slug: platform.slug,
-        }));
-      });
+  async getPlatforms(): Promise<Platform[]> {
+    const findPlatforms = await this.collection.find({}).toArray();
+    const platforms: Platform[] = [];
+    await findPlatforms.forEach((game) => {
+      const platform = platforms.find((platform) => platform.slug === game.platform.slug);
+      if (!platform) {
+        platforms.push(game.platform);
+      }
+    });
+    return await platforms.map((platform) => {
+      return {
+        name: platform.name,
+        slug: platform.slug,
+      };
+    });
   }
 
-  create(games: Game): Promise<unknown> {
-    return this.collection.insertOne(games);
+  async create(games: Game): Promise<unknown> {
+    return await this.collection.insertOne(games);
   }
 }

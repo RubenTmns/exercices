@@ -19,19 +19,28 @@ export class GameModel {
     this.collection = collection;
   }
 
-  getAll(): Promise<Game[]> {
-    return this.collection
-      .find()
-      .toArray()
-      .then((games) => {
-        return games.map((game) => {
-          return {
-            name: game.name,
-            slug: game.slug,
-            cover: game.cover_url,
-          };
-        });
-      });
+  async getAll(): Promise<Game[]> {
+    const find = await this.collection.find({}).toArray();
+    return await find.map((game) => {
+      return {
+        name: game.name,
+        slug: game.slug,
+        cover: game.cover_url,
+      };
+    });
+
+    // return this.collection
+    //   .find()
+    //   .toArray()
+    //   .then((games) => {
+    //     return games.map((game) => {
+    //       return {
+    //         name: game.name,
+    //         slug: game.slug,
+    //         cover: game.cover_url,
+    //       };
+    //     });
+    //   });
   }
 
   findBySlug(slug: string): Promise<Game | null> {
