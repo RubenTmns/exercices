@@ -1,0 +1,7 @@
+<h1>Games</h1>
+<ul>
+  {% for game in games %}
+  <li>{{ game.name }}</li>
+  <img src="{{ game.cover }}" alt="{{ game.name }}" />
+  {% endfor %}
+</ul>

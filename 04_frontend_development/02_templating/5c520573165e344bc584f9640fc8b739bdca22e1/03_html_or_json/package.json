@@ -1,10 +1,10 @@
 {
-  "name": "add_to_your_api",
+  "name": "html_or_json",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "yarn run populate-db && nodemon src/index.ts",
     "populate-db": "ts-node src/scripts/populate-db.ts",
     "test": "eslint --ext .js,.ts . && sparta test --verbose --runInBand"
   },
@@ -70,6 +70,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.6",
+    "nodemon": "^2.0.7",
     "nunjucks": "^3.2.3"
   }
 }

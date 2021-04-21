@@ -1,0 +1,7 @@
+<h1>Platforms</h1>
+<ul>
+  {% for platform in platforms %}
+  <li>{{ platform.name }}</li>
+  <img src="{{ platform.cover }}" />
+  {% endfor %}
+</ul>
