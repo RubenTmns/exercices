@@ -1,4 +1,4 @@
-import express, { request } from "express";
+import express from "express";
 import * as core from "express-serve-static-core";
 import { GameModel } from "./models/game";
 import * as nunjucks from "nunjucks";
@@ -15,10 +15,8 @@ const clientWantsJson = (request: express.Request): boolean => request.get("acce
 export function makeApp(gameModel: GameModel): core.Express {
   app.set("view engine", "njk");
 
-  app.use("/assets", express.static("public"));
-
   app.get("/", (request, response) => {
-    response.render("home");
+    response.status(400).json({ error: "Wrong resource" });
   });
 
   app.get("/games", (request, response) => {
@@ -53,16 +51,8 @@ export function makeApp(gameModel: GameModel): core.Express {
 
   app.get("/platforms/:platform_slug", (request, response) => {
     gameModel.findByPlatform(request.params.platform_slug).then((gamesForPlatform) => {
-      if (clientWantsJson(request)) {
-        response.json(gamesForPlatform);
-      } else {
-        response.render("platformslug", { gamesForPlatform });
-      }
+      response.json(gamesForPlatform);
     });
-  });
-
-  app.get("/contact", (request, response) => {
-    response.render("contacts");
   });
   return app;
 }

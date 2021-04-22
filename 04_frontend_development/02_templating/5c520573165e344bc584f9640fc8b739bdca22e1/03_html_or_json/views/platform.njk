@@ -1,7 +1,18 @@
-<h1>Platforms</h1>
+{% extends "layout.njk" %}
+
+{% block content %}
+<h1>Games</h1>
 <ul>
-  {% for platform in platforms %}
-  <li>{{ platform.name }}</li>
-  <img src="{{ platform.cover }}" />
-  {% endfor %}
+    {% for platform in platforms %}
+    <li>
+        <img src="{{platform.cover}}">
+        <a href = "/platforms/{{platform.slug}}">{{platform.name}}
+    </li>
+    {% endfor %}
 </ul>
+{% endblock %}
+
+
+
+
+
