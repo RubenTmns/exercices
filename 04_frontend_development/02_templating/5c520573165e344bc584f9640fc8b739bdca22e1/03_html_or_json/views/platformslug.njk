@@ -1,17 +1,21 @@
-{% extends "layout.njk" %}
-{% block content %}
+{% extends "layout.njk" %} {% block content %}
 <h1>Games by platform</h1>
-<ul>
+
+<div class="container">
+  <div class="row row-cols-3">
     {% for game in gamesForPlatform %}
-    <li class ="gamesForPlatform">
-        <img src="{{gamesForPlatform.cover}}">
-        <a href = "/platforms/{{gamesForPlatform.slug}}">
-        {{gamesForPlatform.name}}
-    </li>
-
+    <div class="col-12 col-md-6 col-xl-3">
+      <div class="card" style="width: 14rem">
+        <img src="{{ game.cover }}" alt="{{ game.name }}" />
+        <div class="card-body">
+          <h5 class="card-title">{{ game.name }}</h5>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+        <a href="/games/{{ game.slug }}" class="btn btn-primary">See More</a>
+      </div>
+    </div>
     {% endfor %}
-</ul>
+  </div>
+</div>
+
 {% endblock %}
-
-
-

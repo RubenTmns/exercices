@@ -10,6 +10,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/assets/styles/main.css" />
+    <script src="https://kit.fontawesome.com/476c89e3e9.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <script
@@ -17,7 +18,7 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"
     ></script>
-    <ul>
+    
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">VIDEOGAMES</a>
@@ -58,15 +59,19 @@
                   <li><a class="dropdown-item" href="/contact">Contact Me</a></li>
                 </ul>
               </li>
+              <li class="nav-item1">
+                <a class="nav-link" href="/login">Login</a>
+                <li class="nav-item">
+                <a class="nav-link" href="/sign">Sign Up</a>
             </ul>
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button class="btn btn-outline-success" type="slug">Search</button>
+              <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
         </div>
       </nav>
-    </ul>
+    
     {% block content%}{% endblock %}
   </body>
 </html>

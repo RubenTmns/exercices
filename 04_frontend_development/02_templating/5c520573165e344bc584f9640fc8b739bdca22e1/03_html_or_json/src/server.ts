@@ -35,8 +35,10 @@ export function makeApp(gameModel: GameModel): core.Express {
     gameModel.findBySlug(request.params.game_slug).then((game) => {
       if (!game) {
         response.status(404).end();
-      } else {
+      } else if (clientWantsJson(request)) {
         response.json(game);
+      } else {
+        response.render("gameslug", { game });
       }
     });
   });
@@ -62,7 +64,20 @@ export function makeApp(gameModel: GameModel): core.Express {
   });
 
   app.get("/contact", (request, response) => {
-    response.render("contacts");
+    response.render("contact");
   });
+
+  app.get("/login", (request, response) => {
+    response.render("login");
+  });
+
+  app.get("/sign", (request, response) => {
+    response.render("signup");
+  });
+
+  app.get("/other", (request, response) => {
+    response.render("otherworks");
+  });
+
   return app;
 }
