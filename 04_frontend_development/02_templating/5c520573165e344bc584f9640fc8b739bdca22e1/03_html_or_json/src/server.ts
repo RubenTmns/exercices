@@ -24,7 +24,7 @@ export function makeApp(gameModel: GameModel): core.Express {
   app.get("/games", (request, response) => {
     gameModel.getAll().then((games) => {
       if (clientWantsJson(request)) {
-        response.json(games);
+        response.json(games);""
       } else {
         response.render("games", { games });
       }
