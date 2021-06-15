@@ -1,0 +1,4 @@
+Interface : to welcome the user
+  -> Add new customer
+  -> Access customer data
+  -> Quit

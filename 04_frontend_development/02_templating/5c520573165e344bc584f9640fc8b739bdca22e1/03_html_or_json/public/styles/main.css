@@ -1,0 +1,32 @@
+.btn-dark {
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 10mm;
+  margin-left: 50mm;
+}
+
+.homebutton {
+  align-items: center;
+}
+
+.imagehome {
+  width: 100%;
+  height: 600px;
+}
+
+.nav-item1 {
+  margin-left: 150mm;
+}
+
+.card {
+  margin-top: 2rem;
+  height: 24rem;
+  text-align: center;
+}
+
+/* .loginform {
+  text-align: center;
+  margin-left: 120mm;
+  
+} */
